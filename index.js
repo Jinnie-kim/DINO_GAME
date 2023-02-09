@@ -45,7 +45,11 @@ function executeEveryFrame() {
     let cactus = new Cactus();
     manyCactus.push(cactus);
   }
-  manyCactus.forEach((cactus) => {
+  manyCactus.forEach((cactus, index, array) => {
+    // x 좌표가 0 미만이면 장애물 제거
+    if (cactus.x < 0) {
+      array.splice(index, 1);
+    }
     cactus.x--;
     cactus.draw();
   });
