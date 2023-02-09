@@ -34,6 +34,8 @@ class Cactus {
 
 let timer = 0;
 let manyCactus = [];
+let jumpSwitch = false;
+let jumpTimer = 0;
 
 // 1초에 60번 코드 실행하기
 function executeEveryFrame() {
@@ -53,8 +55,26 @@ function executeEveryFrame() {
     cactus.x--;
     cactus.draw();
   });
-
+  if (jumpSwitch === true) {
+    dino.y -= 1;
+    jumpTimer++;
+  }
+  if (jumpSwitch === false) {
+    if (dino.y < 200) {
+      dino.y++;
+    }
+  }
+  if (jumpTimer > 100) {
+    jumpSwitch = false;
+    jumpTimer = 0;
+  }
   dino.draw();
 }
 
 executeEveryFrame();
+
+document.addEventListener("keydown", function (e) {
+  if (e.code === "Space") {
+    jumpSwitch = true;
+  }
+});
