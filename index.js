@@ -32,5 +32,20 @@ class Cactus {
   }
 }
 
-let cactus = new Cactus();
-cactus.draw();
+let timer = 0;
+
+// 1초에 60번 코드 실행하기
+function executeEveryFrame() {
+  requestAnimationFrame(executeEveryFrame);
+  timer++;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (timer % 120 === 0) {
+    let cactus = new Cactus();
+    cactus.draw();
+  }
+
+  dino.draw();
+}
+
+executeEveryFrame();
